@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ef-pos-console": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\nickm\\source\\repos\\portfolio projects\\ef-pos-console\\ef-pos-console\\"
+    }
+  }
+}
