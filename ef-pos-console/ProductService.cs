@@ -3,7 +3,7 @@
 namespace ef_pos_console;
 internal class ProductService
 {
-    static internal Product GetProductOptionInput()
+    static private Product GetProductOptionInput()
     {
         var option = AnsiConsole.Prompt(new SelectionPrompt<string>()
             .Title("Choose Product")
@@ -17,9 +17,27 @@ internal class ProductService
         return product;
     }
 
+    static internal void AddProduct()
+    {
+        var name = AnsiConsole.Ask<string>("Product name:");
+        ProductController.AddProduct(name);
+    }
+
     static internal void DeleteProduct()
     {
         var product = GetProductOptionInput();
         ProductController.DeleteProduct(product);
+    }
+
+    static internal void GetAllProducts()
+    {
+        var products = ProductController.GetProducts();
+        UI.ShowProductTable(products);
+    }
+
+    static internal void GetProduct()
+    {
+        var product = GetProductOptionInput();
+        UI.ShowProduct(product);
     }
 }

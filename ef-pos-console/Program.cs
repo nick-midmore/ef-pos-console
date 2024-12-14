@@ -20,8 +20,7 @@ while (isRunning)
     switch (option)
     {
         case MenuOption.AddProduct:
-            var name = AnsiConsole.Ask<string>("Product name:");
-            ProductController.AddProduct(name);
+            ProductService.AddProduct();
             break;
         case MenuOption.UpdateProduct:
             ProductController.UpdateProduct();
@@ -30,12 +29,10 @@ while (isRunning)
             ProductService.DeleteProduct();
             break;
         case MenuOption.ViewProduct:
-            var product = ProductService.GetProductOptionInput();
-            UI.ShowProduct(product);
+            ProductService.GetProduct();
             break;
         case MenuOption.ViewAllProducts:
-            var products = ProductController.GetProducts();
-            UI.ShowProductTable(products);
+            ProductService.GetAllProducts();
             break;
         case MenuOption.Quit:
             isRunning = false;
