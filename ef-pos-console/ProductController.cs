@@ -5,10 +5,10 @@ namespace ef_pos_console;
 
 internal class ProductController
 {
-    internal static void AddProduct(string name)
+    internal static void AddProduct(Product product)
     {
         using var db = new ProductContext();
-        db.Add(new Product { Name = name });
+        db.Add(product);
 
         db.SaveChanges();
     }
