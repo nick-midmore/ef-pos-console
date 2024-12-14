@@ -16,4 +16,10 @@ internal class ProductService
 
         return product;
     }
+
+    static internal void DeleteProduct()
+    {
+        var product = GetProductOptionInput();
+        ProductController.DeleteProduct(product);
+    }
 }

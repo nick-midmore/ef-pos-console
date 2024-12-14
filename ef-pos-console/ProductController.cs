@@ -5,18 +5,19 @@ namespace ef_pos_console;
 
 internal class ProductController
 {
-    internal static void AddProduct()
+    internal static void AddProduct(string name)
     {
-        var name = AnsiConsole.Ask<string>("Product name:");
         using var db = new ProductContext();
         db.Add(new Product { Name = name });
 
         db.SaveChanges();
     }
 
-    internal static void DeleteProduct()
+    internal static void DeleteProduct(Product product)
     {
-        throw new NotImplementedException();
+        using var db = new ProductContext();
+        db.Remove(product);
+        db.SaveChanges();
     }
 
     internal static void UpdateProduct()
