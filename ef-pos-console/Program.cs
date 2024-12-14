@@ -23,7 +23,7 @@ while (isRunning)
             ProductService.AddProduct();
             break;
         case MenuOption.UpdateProduct:
-            ProductController.UpdateProduct();
+            ProductService.UpdateProduct();
             break;
         case MenuOption.DeleteProduct:
             ProductService.DeleteProduct();

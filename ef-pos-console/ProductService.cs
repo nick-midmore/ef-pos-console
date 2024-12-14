@@ -23,6 +23,13 @@ internal class ProductService
         ProductController.AddProduct(name);
     }
 
+    static internal void UpdateProduct()
+    {
+        var product = GetProductOptionInput();
+        product.Name = AnsiConsole.Ask<string>("New product name:");
+        ProductController.UpdateProduct(product);
+    }
+
     static internal void DeleteProduct()
     {
         var product = GetProductOptionInput();

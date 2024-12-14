@@ -17,12 +17,16 @@ internal class ProductController
     {
         using var db = new ProductContext();
         db.Remove(product);
+
         db.SaveChanges();
     }
 
-    internal static void UpdateProduct()
+    internal static void UpdateProduct(Product product)
     {
-        throw new NotImplementedException();
+        using var db = new ProductContext();
+        db.Update(product);
+
+        db.SaveChanges();
     }
 
     internal static List<Product> GetProducts()
