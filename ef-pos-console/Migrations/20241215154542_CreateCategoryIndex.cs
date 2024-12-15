@@ -5,25 +5,24 @@
 namespace ef_pos_console.Migrations
 {
     /// <inheritdoc />
-    public partial class AddPrice : Migration
+    public partial class CreateCategoryIndex : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<decimal>(
-                name: "Price",
-                table: "Products",
-                type: "TEXT",
-                nullable: false,
-                defaultValue: 0m);
+            migrationBuilder.CreateIndex(
+                name: "IX_Categories_Name",
+                table: "Categories",
+                column: "Name",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Price",
-                table: "Products");
+            migrationBuilder.DropIndex(
+                name: "IX_Categories_Name",
+                table: "Categories");
         }
     }
 }

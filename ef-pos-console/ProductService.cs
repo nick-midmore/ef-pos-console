@@ -1,4 +1,6 @@
-﻿using Spectre.Console;
+﻿using ef_pos_console.Controllers;
+using ef_pos_console.Models;
+using Spectre.Console;
 
 namespace ef_pos_console;
 internal class ProductService
@@ -20,10 +22,10 @@ internal class ProductService
             AnsiConsole.Markup("[red]Multiple products found with the same name.[/]\n");
             var selectedProduct = AnsiConsole.Prompt(new SelectionPrompt<string>()
                 .Title("Choose Specific Product")
-                .AddChoices(selectedGroup.Select(p => $"ID: {p.Id}, Name: {p.Name}, Price: {p.Price}").ToArray()));
+                .AddChoices(selectedGroup.Select(p => $"ID: {p.ProductId}, Name: {p.Name}, Price: {p.Price}").ToArray()));
 
             int selectedProductId = int.Parse(selectedProduct.Split(',')[0].Split(':')[1].Trim());
-            return products.First(p => p.Id == selectedProductId);
+            return products.First(p => p.ProductId == selectedProductId);
         }
         else
         {

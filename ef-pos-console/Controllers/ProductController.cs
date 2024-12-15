@@ -1,7 +1,7 @@
-﻿
+﻿using ef_pos_console.Models;
 using Spectre.Console;
 
-namespace ef_pos_console;
+namespace ef_pos_console.Controllers;
 
 internal class ProductController
 {
@@ -42,7 +42,7 @@ internal class ProductController
     {
         using var db = new ProductContext();
 
-        var product = db.Products.SingleOrDefault(x => x.Id == id);
+        var product = db.Products.SingleOrDefault(x => x.ProductId == id);
 
         return product;
     }

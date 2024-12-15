@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using ef_pos_console.Models;
+using Spectre.Console;
 
 namespace ef_pos_console;
 static internal class UI
@@ -49,7 +50,7 @@ static internal class UI
 
     internal static void ShowProduct(Product product)
     {
-        var panel = new Panel($@"Id: {product.Id}
+        var panel = new Panel($@"Id: {product.ProductId}
             Name: {product.Name}
             Price: {product.Price}");
         panel.Header = new PanelHeader("Product Info");
@@ -72,7 +73,7 @@ static internal class UI
         foreach (var product in products)
         {
             table.AddRow(
-                product.Id.ToString(), 
+                product.ProductId.ToString(), 
                 product.Name, 
                 product.Price.ToString());
         }
