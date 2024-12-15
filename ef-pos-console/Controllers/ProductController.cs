@@ -34,7 +34,9 @@ internal class ProductController
     {
         using var db = new ProductContext();
 
-        return db.Products.ToList();
+        return db.Products
+            .Include(x => x.Category)
+            .ToList();
     }
 
     internal static Product GetProductById(int id)

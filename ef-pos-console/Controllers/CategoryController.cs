@@ -1,4 +1,5 @@
 ﻿using ef_pos_console.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ef_pos_console.Controllers;
 internal class CategoryController
@@ -16,6 +17,8 @@ internal class CategoryController
     {
         using var db = new ProductContext();
 
-        return db.Categories.ToList();
+        return db.Categories
+            .Include(x => x.Products)
+            .ToList();
     }
 }
