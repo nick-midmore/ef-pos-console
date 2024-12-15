@@ -11,4 +11,11 @@ internal class CategoryController
 
         db.SaveChanges();
     }
+
+    internal static List<Category> GetCategories()
+    {
+        using var db = new ProductContext();
+
+        return db.Categories.ToList();
+    }
 }

@@ -13,6 +13,7 @@ internal enum MenuOption
     ViewProduct,
     ViewAllProducts,
     AddCategory,
+    ViewAllCategories,
     Quit
 }
 

@@ -1,4 +1,5 @@
 ﻿using ef_pos_console.Models;
+using Microsoft.EntityFrameworkCore;
 using Spectre.Console;
 
 namespace ef_pos_console.Controllers;
@@ -33,17 +34,15 @@ internal class ProductController
     {
         using var db = new ProductContext();
 
-        var products = db.Products.ToList();
-
-        return products;
+        return db.Products.ToList();
     }
 
     internal static Product GetProductById(int id)
     {
         using var db = new ProductContext();
 
-        var product = db.Products.SingleOrDefault(x => x.ProductId == id);
-
-        return product;
+        return  db.Products
+            .Include(x => x.Category)
+            .SingleOrDefault(x => x.ProductId == id);
     }
 }

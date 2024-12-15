@@ -11,6 +11,7 @@ static internal class UI
 
         while (isRunning)
         {
+            Console.Clear();
             var option = AnsiConsole.Prompt(
             new SelectionPrompt<MenuOption>()
             .Title("What would you like to do?")
@@ -21,6 +22,7 @@ static internal class UI
                 MenuOption.ViewProduct,
                 MenuOption.ViewAllProducts,
                 MenuOption.AddCategory,
+                MenuOption.ViewAllCategories,
                 MenuOption.Quit
             ));
 
@@ -44,6 +46,9 @@ static internal class UI
                 case MenuOption.AddCategory:
                     CategoryService.AddCategory();
                     break;
+                case MenuOption.ViewAllCategories:
+                    CategoryService.GetCategories();
+                    break;
                 case MenuOption.Quit:
                     isRunning = false;
                     break;
@@ -56,8 +61,9 @@ static internal class UI
     internal static void ShowProduct(Product product)
     {
         var panel = new Panel($@"Id: {product.ProductId}
-            Name: {product.Name}
-            Price: {product.Price}");
+Name: {product.Name}
+Price: {product.Price}
+Category: {product.Category.Name}");
         panel.Header = new PanelHeader("Product Info");
         panel.Padding = new Padding(2, 1, 2, 1);
 
@@ -68,19 +74,43 @@ static internal class UI
         Console.Clear();
     }
 
-    internal static void ShowProductTable(List<Product> products)
+    internal static void ListProducts(List<Product> products)
     {
         var table = new Table();
         table.AddColumn("Id");
         table.AddColumn("Name");
         table.AddColumn("Price");
+        table.AddColumn("Category");
 
         foreach (var product in products)
         {
             table.AddRow(
                 product.ProductId.ToString(), 
                 product.Name, 
-                product.Price.ToString());
+                product.Price.ToString(),
+                product.Category.Name);
+        }
+
+        AnsiConsole.Write(table);
+
+        Console.WriteLine("Press any key to continue");
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+    internal static void ListCategories(List<Category> categories)
+    {
+        var table = new Table();
+        table.AddColumn("Id");
+        table.AddColumn("Name");
+        table.AddColumn("Product count");
+
+        foreach(var category in categories)
+        {
+            table.AddRow(
+                category.CategoryId.ToString(),
+                category.Name,
+                category.Products.Count.ToString());
         }
 
         AnsiConsole.Write(table);
