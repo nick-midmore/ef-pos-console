@@ -12,5 +12,8 @@ internal enum MenuOption
     DeleteProduct,
     ViewProduct,
     ViewAllProducts,
+    AddCategory,
     Quit
 }
+
+

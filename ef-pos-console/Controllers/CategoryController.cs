@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ef_pos_console.Models;
 
 namespace ef_pos_console.Controllers;
 internal class CategoryController
 {
+    internal static void AddCategory(Category category)
+    {
+        using var db = new ProductContext();
+
+        db.Add(category);
+
+        db.SaveChanges();
+    }
 }

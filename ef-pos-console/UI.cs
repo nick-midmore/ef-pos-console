@@ -1,4 +1,5 @@
 ﻿using ef_pos_console.Models;
+using ef_pos_console.Services;
 using Spectre.Console;
 
 namespace ef_pos_console;
@@ -19,6 +20,7 @@ static internal class UI
                 MenuOption.DeleteProduct,
                 MenuOption.ViewProduct,
                 MenuOption.ViewAllProducts,
+                MenuOption.AddCategory,
                 MenuOption.Quit
             ));
 
@@ -38,6 +40,9 @@ static internal class UI
                     break;
                 case MenuOption.ViewAllProducts:
                     ProductService.GetAllProducts();
+                    break;
+                case MenuOption.AddCategory:
+                    CategoryService.AddCategory();
                     break;
                 case MenuOption.Quit:
                     isRunning = false;

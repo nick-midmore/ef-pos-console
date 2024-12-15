@@ -2,7 +2,7 @@
 using ef_pos_console.Models;
 using Spectre.Console;
 
-namespace ef_pos_console;
+namespace ef_pos_console.Services;
 internal class ProductService
 {
     static private Product GetProductOptionInput()
