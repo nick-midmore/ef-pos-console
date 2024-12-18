@@ -5,7 +5,7 @@ using Spectre.Console;
 namespace ef_pos_console.Services;
 internal class CategoryService
 {
-    static internal int GetCategoryOptionInput()
+    static internal Category GetCategoryOptionInput()
     {
         var categories = CategoryController.GetCategories();
         var categoryGroups = categories.GroupBy(p => p.Name).ToList();
@@ -14,7 +14,6 @@ internal class CategoryService
             .Title("Choose category")
             .AddChoices(categoryGroups.Select(g => g.Key).ToArray()));
 
-        // Check for duplicates
         var selectedGroup = categoryGroups.First(g => g.Key == option);
 
         if (selectedGroup.Count() > 1)
@@ -25,11 +24,11 @@ internal class CategoryService
                 .AddChoices(selectedGroup.Select(p => $"ID: {p.CategoryId}, Name: {p.Name}").ToArray()));
 
             int selectedcategoryId = int.Parse(selectedcategory.Split(',')[0].Split(':')[1].Trim());
-            return categories.First(p => p.CategoryId == selectedcategoryId).CategoryId;
+            return categories.First(p => p.CategoryId == selectedcategoryId);
         }
         else
         {
-            return selectedGroup.First().CategoryId;
+            return selectedGroup.First();
         }
     }
 
@@ -45,5 +44,22 @@ internal class CategoryService
     internal static void GetCategories()
     {
         UI.ListCategories(CategoryController.GetCategories());
+    }
+
+    internal static void UpdateCategory()
+    {
+        var category = GetCategoryOptionInput();
+
+        category.Name = AnsiConsole.Confirm("Update category name?")
+            ? AnsiConsole.Ask<string>("Enter new category name:")
+            : category.Name;
+
+
+        CategoryController.UpdateCategory(category);
+    }
+
+    internal static void DeleteCategory()
+    {
+        CategoryController.DeleteCategory(GetCategoryOptionInput());
     }
 }

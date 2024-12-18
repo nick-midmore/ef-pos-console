@@ -9,7 +9,23 @@ internal class CategoryController
         using var db = new ProductContext();
 
         db.Add(category);
+        db.SaveChanges();
+    }
 
+    internal static void UpdateCategory(Category category)
+    {
+        using var db = new ProductContext();
+
+        db.Update(category);
+        db.SaveChanges();
+
+    }
+
+    internal static void DeleteCategory(Category category)
+    {
+        using var db = new ProductContext();
+
+        db.Remove(category);
         db.SaveChanges();
     }
 

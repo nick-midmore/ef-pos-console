@@ -22,6 +22,8 @@ static internal class UI
                 MenuOption.ViewProduct,
                 MenuOption.ViewAllProducts,
                 MenuOption.AddCategory,
+                MenuOption.DeleteCategory,
+                MenuOption.UpdateCategory,
                 MenuOption.ViewAllCategories,
                 MenuOption.Quit
             ));
@@ -45,6 +47,12 @@ static internal class UI
                     break;
                 case MenuOption.AddCategory:
                     CategoryService.AddCategory();
+                    break;
+                case MenuOption.UpdateCategory:
+                    CategoryService.UpdateCategory();
+                    break;
+                case MenuOption.DeleteCategory:
+                    CategoryService.DeleteCategory();
                     break;
                 case MenuOption.ViewAllCategories:
                     CategoryService.GetCategories();
@@ -85,8 +93,8 @@ Category: {product.Category.Name}");
         foreach (var product in products)
         {
             table.AddRow(
-                product.ProductId.ToString(), 
-                product.Name, 
+                product.ProductId.ToString(),
+                product.Name,
                 product.Price.ToString(),
                 product.Category.Name);
         }
@@ -105,7 +113,7 @@ Category: {product.Category.Name}");
         table.AddColumn("Name");
         table.AddColumn("Product count");
 
-        foreach(var category in categories)
+        foreach (var category in categories)
         {
             table.AddRow(
                 category.CategoryId.ToString(),

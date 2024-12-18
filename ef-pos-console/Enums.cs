@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ef_pos_console;
+﻿namespace ef_pos_console;
 internal enum MenuOption
 {
     AddProduct,
@@ -13,8 +7,10 @@ internal enum MenuOption
     ViewProduct,
     ViewAllProducts,
     AddCategory,
+    UpdateCategory,
     ViewAllCategories,
-    Quit
+    Quit,
+    DeleteCategory
 }
 
 
